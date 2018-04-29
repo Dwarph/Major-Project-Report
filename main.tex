@@ -9,14 +9,15 @@
 \usepackage{graphicx}
 \usepackage{fancyhdr}
 \usepackage{wrapfig}
+\usepackage{caption}
 
 
 
 
 \begin{document}
 \title{3D Procedurally Generated Nature Scene}
-\author{Pip Turner - pit@aber.ac.uk \\
-Supervisor: Reyer Zwiggelaar\\
+\author{Pip Turner - pit@aber.ac.uk  \\
+Supervisor: Reyer Zwiggelaar \\
 G400 Computer Science \\
 CS39440}
 \date{\parbox{\linewidth}{\centering%
@@ -45,12 +46,12 @@ CS39440}
 
 
 \section{Abstract}
-3D Procedural Generation is a way to produce high variety 3D models quickly without manually creating the content. This Project is going to focus on the implementation and subsequent levels of variation of Procedural Generation Algorithms in order to create a cohesive scene. I will be focusing on creating nature based content, e.g. Terrain, Trees and Foliage in order to combine them together and create a dense scene which also renders smoothly. 
+3D Procedural Generation is a way to produce high variety 3D models quickly without manually creating the content. This Project is going to focus on the implementation and subsequent levels of variation of Procedural Generation Algorithms in order to create a cohesive scene. This project will focus on creating nature based content, e.g. Terrain, Trees and Foliage in order to combine them together and create a dense scene which also renders smoothly. 
 \clearpage
 \chapter{Introduction}
 \section{Project Description}
 
-Procedural Content Generation is a broad term referring to the creation of content automatically through algorithmic means~\cite{yannakakis2011experience}. The most popular examples of Procedural Generation are usually the use of it in creating Procedurally Generated Worlds, such as No Man's Sky~\cite{nomanssky} - a game which provides the player with a procedurally generated universe to explore. Projects which aim to generate entire planets, or even universes are what initially made me interested in procedural generation - the vast scope, potential and variety of  scenes excited me the most. \\
+Procedural Content Generation is a broad term referring to the creation of content automatically through algorithmic means~\cite{yannakakis2011experience}. The most popular examples of Procedural Generation are usually the use of it in creating procedurally Generated Worlds, such as No Man's Sky~\cite{nomanssky} - a game which provides the player with a procedurally generated universe to explore. Projects which aim to generate entire planets, or even universes are what initially provided inspiration for this project to be focused around procedural generation - the vast scope, potential and variety of scenes in particular. \medskip
 
 
 \begin{figure}[h!]
@@ -61,35 +62,35 @@ Procedural Content Generation is a broad term referring to the creation of conte
 \end{figure}
 
 
-This project, therefore is a 3D Procedurally Generated Nature Scene - a small, dense scene utilising procedural content generation techniques to create a  scene which is visibly different each time it is generated. \\
+This project, therefore is a 3D Procedurally Generated Nature Scene - a small, dense scene utilising procedural content generation techniques to create a  scene which is visibly different each time it is generated. \medskip
 
-However, my knowledge of all areas of this project was limited when beginning - this project is as much a personal opportunity to learn low level 3D Graphics and Procedural Generation techniques as it is simply an exercise in implementing them. 
+However, upon beginning this project, personal knowledge of all areas within this project was limited - this project is as much a personal opportunity to learn low level 3D Graphics and Procedural Generation techniques as it is simply an exercise in implementing them. 
 
 \section{Project Aims}
-The aims of the project are as follows:\\
+The aims of the project are as follows:\medskip
 
-\textbf{\textit{Create a 3D Procedurally Generated Nature Scene}} \\
+\textbf{\textit{Create a 3D Procedurally Generated Nature Scene}} \medskip
 
-The heart of this project is creating a 3D nature scene which is different each time it is generated, using 3D Procedural Content Generation. Rather than creating large, vast swathes of land, I am instead aiming for a smaller, dense scene in order to generate more interesting landscapes. The smaller the scene, the less content is needed to be generated in order to ensure high levels of variation.\\
+The heart of this project is creating a 3D nature scene which is different each time it is generated, using 3D Procedural Content Generation. Rather than creating large, vast swathes of land, this project is instead aiming for a smaller, dense scene in order to generate more interesting landscapes. The smaller the scene, the less content is needed to be generated in order to ensure high levels of variation.\medskip
 
-The main work involved in this aim will be the implementation and subsequent optimisation and use of procedural algorithms. The basic two ingredients needed are Terrain and Trees - this would at the very least show a good understanding and implementation of two to three procedural algorithms. Once these are well implemented, I can add foliage and other details in order to increase the variety of the scene, further progressing the detail and complexity of the scene.  \\
+The main work involved in this aim will be the implementation and subsequent optimisation and use of procedural algorithms. The basic two ingredients needed are Terrain and Trees - this would at the very least show a good understanding and implementation of two to three procedural algorithms. Once these are well implemented, foliage and other details can be added in order to increase the variety of the scene, further progressing the detail and complexity of the scene.  \medskip
 
 
-\textbf{\textit{Become competent with C++, OpenGL and the core fundamentals of low level graphics}} \\
+\textbf{\textit{Become competent with C++, OpenGL and the core fundamentals of low level graphics}} \medskip
 
-The other main aim of this project is in regards to the skills and technologies learnt whilst working on it. I have begun this project with a basic understanding of C++, basic ideas about procedural generation algorithms and no understanding of OpenGL (albeit some basic knowledge of graphics and graphics libraries). In aiming to achieve this project, I hope to come out of it with a greater appreciation and understanding of C++, procedural generation algorithms and OpenGL.\\
+The other main aim of this project is in regards to the skills and technologies learnt whilst working on it. This project was begun with a basic understanding of C++, basic ideas about procedural generation algorithms and no understanding of OpenGL (albeit some basic knowledge of graphics and graphics libraries). Upon completion of this project, there should be a huge jump in knowledge and skills learnt, with a greater appreciation and understanding of C++, procedural generation algorithms and OpenGL.\medskip
 
 \chapter{Research}
 
-In researching into this project, I needed to clearly find and choose suitable algorithms. In selecting them, I narrowed them down into two categories - Terrain and Objects on the Terrain. \\
+In researching into this project, suitable algorithms were needed to be found. Two categories were decided upon - Terrain and Objects on the Terrain. \medskip
 
 \section{Existing Solutions}
 
 \subsection{Terrain}
 
-A major part of this project was selecting and subsequently implementing a terrain algorithm which produced suitably varied and realistic looking terrain. One of the most popular noise generation techniques for Procedural terrain is Perlin Noise~\cite{perlin2002improving} - an algorithm which has been widely used for 3D Graphics, and something which has been instrumental in improving 3D graphics. Whilst it is a popular algorithm, it can be quite computationally expensive and difficult to implement in comparison to other algorithms.\\
+A major part of this project was selecting and subsequently implementing a terrain algorithm which produced suitably varied and realistic looking terrain. One of the most popular noise generation techniques for Procedural terrain is Perlin Noise~\cite{perlin2002improving} - an algorithm which has been widely used for 3D Graphics, and something which has been instrumental in improving 3D graphics. Whilst it is a popular algorithm, it can be quite computationally expensive and difficult to implement in comparison to other algorithms.\medskip
 
-My supervisor, Reyer Zwiggelaar, suggested looking into Fractal Images, initially suggesting some realistic natural growth based algorithms~\cite{Bilsborough3424}. One of the most widely used Fractal Terrain algorithms is Diamond Square~\cite{olsen2004realtime} - a variation on midpoint displacement. Midpoint Displacement's main issue was that when generating a heightmap it often left "creases" in its landscape, an issue Diamond Square aims to fix by using two stages of midpoint displacement - named Square and Diamond.  \\
+The supervisor to the project, Reyer Zwiggelaar, suggested looking into Fractal Images, initially suggesting some realistic natural growth based algorithms~\cite{Bilsborough3424}. One of the most widely used Fractal Terrain algorithms is Diamond Square~\cite{olsen2004realtime} - a variation on midpoint displacement. Midpoint Displacement's main issue was that when generating a heightmap it often left "creases" in its landscape, an issue Diamond Square aims to fix by using two stages of midpoint displacement - named Square and Diamond.  \medskip
 
 \begin{figure}[h!]
     \centering
@@ -100,46 +101,45 @@ My supervisor, Reyer Zwiggelaar, suggested looking into Fractal Images, initiall
 
 \subsection{Objects on Terrain}
 
-As well as procedural terrain, in order to ensure a high level of variety objects upon the terrain are going to also need to be generated. This project will focus mainly on foliage, i.e. Trees, plants and grass. In researching procedurally generated trees I identified two methods which I could implement - Lindenmayer Systems~\cite{lindenmayer2017} or a Space Colonisation Algorithm~\cite{runions2007modeling}. 
+As well as procedural terrain, in order to ensure a high level of variety, objects upon the terrain are going to also need to be generated. This project will focus mainly on foliage, i.e. Trees, plants and grass. In researching procedurally generated trees two methods were identified as possible implementations - Lindenmayer Systems~\cite{lindenmayer2017} or a Space Colonisation Algorithm~\cite{runions2007modeling}. 
 
-\textbf{\textit{CITE Fractals and Chaos}}\\
-Lindenmayer System is a fractal generation algorithm which builds a fractal by iterating over a string, following a ruleset~\cite{prusinkiewicz2012algorithmic}. The string can then be interpreted into something drawable. This allows for infinite number of unique fractal patterns to be generated, but most importantly, it can be used to generate trees, bushes and grass like fractals.  
+Lindenmayer System is a fractal generation algorithm which builds a fractal by iterating over a string, following a rule set~\cite{prusinkiewicz2012algorithmic}~\cite{crownover1995introduction}. The string can then be interpreted into something drawable. This allows for infinite number of unique fractal patterns to be generated, but most importantly, it can be used to generate trees, bushes and grass like fractals.  
 
 Space Colonisation~\cite{runions2007modeling} works by defining an area in space, filling it with "seeds" (points in space) and "growing" branches towards those points. By doing this, it becomes an incredibly powerful tree generator - generating a huge variety of trees depending on the defined area and the amount of seeds.
 
 \subsection{Optimisation}
-This project will require displaying a lot of objects and vertices at once, meaning that optimisation techniques will need to be implemented, as the more vertices on the screen, the lower the framerate. In order to display the scene professionally, we need to aim for a high framerate (between 30 and 60).  \\
+This project will require displaying a lot of objects and vertices at once, meaning that optimisation techniques will need to be implemented, as the more vertices on the screen, the lower the frame rate. In order to display the scene professionally, we need to aim for a high frame rate (between 30 and 60).  \medskip
 
-There are a number of big optimisations associated with 3D Graphics. The most applicable optimisation to both Terrain and Trees is Level Of Detail. The further the way an object is from the user, the less detailed the object needs to be. For example, if the player is looking at a far off Mountain, they won't be able to see all of the nooks and crannies on it, only the general shape. This means that we can severely decrease the number of vertices on objects which are far away, whilst keeping high detail on objects which are closer. \\
+There are a number of big optimisation techniques associated with 3D Graphics. The most applicable optimisation to both Terrain and Trees is Level Of Detail. The further the way an object is from the user, the less detailed the object needs to be. For example, if the player is looking at a far off Mountain, they won't be able to see all of the nooks and crannies on it, only the general shape. This means that we can severely decrease the number of vertices on objects which are far away, whilst keeping high detail on objects which are closer. \medskip
 
-Level of Detail is even more relevant when displaying objects like trees, bushes and grass. We can go even further with these using Billboards and Impostors~\cite{jia2013fast}. The basic premise of them is if the tree is far enough from the player for the player to not realise, we can generate an image of the tree and display the image instead. For Example, if we have a tree with five hundred vertices, we can simply display it using six, by mapping the image of the tree onto a quadrilateral polygon made up of two triangles. These images can differ depending on how far away the object is from the player. If the object is very far, we can simply display one image of it, oriented towards the player - this is known as Billboarding. However, if the object is a bit closer to the player, we can display an image of the tree at a certain rotation, giving the illusion of perspective to the player. The implementation of Billboards and Impostors can also vary from object to object. Grass, as it is so small can potentially simply be displayed as a Billboard for all of its lifetime. Billboards and impostors can provide huge optimisations, drastically cutting down the number of polygons in the scene whilst maintaining the illusion of density. \\
+Level of detail is even more relevant when displaying objects like trees, bushes and grass. We can go even further with these using Billboards and Impostors~\cite{jia2013fast}. The basic premise of them is if the tree is far enough from the player for the player to not realise, we can generate an image of the tree and display the image instead. For Example, if we have a tree with five hundred vertices, we can simply display it using six, by mapping the image of the tree onto a quadrilateral polygon made up of two triangles. These images can differ depending on how far away the object is from the player. If the object is very far, we can simply display one image of it, oriented towards the player - this is known as \textit{Billboarding}. However, if the object is a bit closer to the player, we can display an image of the tree at a certain rotation, giving the illusion of perspective to the player. The implementation of Billboards and Impostors can also vary from object to object. Grass, as it is so small can potentially simply be displayed as a Billboard for all of its lifetime. billboard and impostor optimisations can provide huge boost to the frame rate , drastically cutting down the number of polygons in the scene whilst maintaining the illusion of density. \medskip
 
 Objects on the Terrain can also be optimised using instancing and by implementing the Flyweight Design Pattern (\emph{see section 1.5.4}). Instance Rendering allows us to draw the same tree multiple times in different places, whilst only ever storing the data of it once. This saves hugely on memory space.  
 
 
 \subsection{Design Patterns}
 
-There were no Architectural Design Patterns which seemed relevant for this project. Model View Controller~\cite{vlissides1995design} was considered, but when implementation was theorised, it was found that the pattern simply didn't fit this project - it would be overkill to implement a pattern which lent so heavily on a database on a project which doesn't require any database functionality. \\
+There were no Architectural Design Patterns which seemed relevant for this project. Model View Controller~\cite{vlissides1995design} was considered, but when implementation was theorised, it was found that the pattern simply didn't fit this project - it would be overkill to implement a pattern which lent so heavily on a database on a project which doesn't require any database functionality. \medskip
 
-However, I have identified two programming patterns which are relevant to my project: Flyweight and Command~\cite{nystrom2014game}.\\
+However, two programming patterns have been identified which are relevant to the project: Flyweight and Command~\cite{nystrom2014game}.\medskip
 
-\emph{\textbf{Flyweight}}\\
+\emph{\textbf{Flyweight}}\medskip
 
-Flyweight allows you to share common information between objects. This is hugely useful for Trees - they may have the same mesh, colour details or texture. Separating out this data, and then having the instances of the trees carry a pointer to the data can allow for optimised data sharing. \\
+Flyweight allows you to share common information between objects. This is hugely useful for Trees - they may have the same mesh, colour details or texture. Separating out this data, and then having the instances of the trees carry a pointer to the data can allow for optimised data sharing. \medskip
 
-\emph{\textbf{Command}}\\
+\emph{\textbf{Command}}\medskip
 
-Command can be used for different inputs the player makes. Instead of hardcoding each keypress, we can implement command, which abstracts the keypress from the command, allowing for easy remapping of keys. This can come in useful for handling movement within the program. 
+Command can be used for different inputs the player makes. Instead of hard coding each key press, we can implement command, which abstracts the key press from the command, allowing for easy remapping of keys. This can come in useful for handling movement within the program. 
 
 \section{Suitability of Algorithms}
 
 \subsection{Terrain}
 
-For Terrain, I am going to use the Diamond Square algorithm. As I am coming to this project with limited initial knowledge, choosing an algorithm which is relatively simple to implement, and which produces similar results to Perlin noise is preferable. As Diamond Square is less complex, it also takes less time to generate its height map. However, in comparison to Perlin Noise, it is less flexible - Perlin Noise can be used to generate infinite surroundings on the fly, needing no knowledge of points next to it, whereas Diamond Square Terrain needs to be generated as a whole before it is rendered, meaning that chunks would have to be stitched together to create infinite terrain. However, as the aim of this project is not to provide infinite terrain, but rather a variation on a small part of Terrain, this is not too much of an issue for me. 
+For Terrain, the Diamond Square algorithm will be used. As this project will be completed with limited initial knowledge, choosing an algorithm which is relatively simple to implement, and which produces similar results to Perlin noise is preferable. As Diamond Square is less complex, it also takes less time to generate its height map. However, in comparison to Perlin Noise, it is less flexible - Perlin Noise can be used to generate infinite surroundings on the fly, needing no knowledge of points next to it, whereas Diamond Square Terrain needs to be generated as a whole before it is rendered, meaning that chunks would have to be stitched together to create infinite terrain. However, as the aim of this project is not to provide infinite terrain, but rather a variation on a small part of Terrain, this is not too much of an issue for me. 
 
 \subsubsection{Objects}
 
-When adding objects to my terrain, I hope to have a high level of variety. As the time on this project is limited, I have decided to use Lindenmayer Systems over Space Colonisation. In using L-Systems, I can have a high range of different fractals, providing an interesting scene to look at. Lindenmayer Systems are not only fast and have a low memory footprint, they allow for huge variation in not just trees but in creating other objects such as plants, grass and bushes. 
+When adding objects to the terrain, a high level of variety is preferred. As the time on this project is limited, the Lindenmayer System algorithm will be used, instead of Space Colonisation. In using L-Systems, a high range of different fractals can be used, providing an interesting scene to look at. Lindenmayer Systems are not only fast and have a low memory footprint, they allow for huge variation in not just trees but in creating other objects such as plants, grass and bushes. 
 
 \section{Proposed Implementation}
 \subsection{Overview}
@@ -149,9 +149,9 @@ In creating this project, it is not only the software implementation which is im
 \subsection{Software Development}
 \subsubsection{Life-cycle}
 
-An Agile Methodology seemed well suited to the project, as the technologies were so new to me, and the project so dynamic in scope. Following a Waterfall style system wouldn't have worked as well, as I wouldn't have been able to plan effectively, due to lesser knowledge of the subject. Agile Methodologies tend to be less rigidly structured, allowing me more flexibility to learn and experiment within the project. \\
+An Agile Methodology seemed well suited to the project, as the technologies were so new to me, and the project so dynamic in scope. Following a Waterfall style system wouldn't have worked as well, as a rigid plan would not have worked as effectively, due to lesser knowledge of the subject. Agile Methodologies tend to be less rigidly structured, allowing for more flexibility to learn and experiment within the project. \medskip
 
-With this in mind, I chose to use a One Man Scrum Methodology. In a One Man Scrum tutorial, written by Alex Andrews,~\cite{andrews_2017} Andrews discusses the core principles of Scrum - Shipping features regularly, productivity and self reflection \& meaningful iteration. Scrum works by splitting development up into short sections known as "Sprints". Features of a program which need implementing are known as Stories, and each Sprint is focused around completing a specific set of stories, decided upon before the sprint began. \\
+With this in mind, One Man Scrum Methodology was selected to be used. In a One Man Scrum tutorial, written by Alex Andrews,~\cite{andrews_2017} Andrews discusses the core principles of Scrum - Shipping features regularly, productivity and self reflection \& meaningful iteration. Scrum works by splitting development up into short sections known as "Sprints". Features of a program which need implementing are known as Stories, and each Sprint is focused around completing a specific set of stories, decided upon before the sprint began. \medskip
 
 \begin{figure}[h!]
     \centering
@@ -160,7 +160,7 @@ With this in mind, I chose to use a One Man Scrum Methodology. In a One Man Scru
  \label{fig:two_week_sprint_plan}
 \end{figure}
 
-As seen in Figure~\ref{fig:two_week_sprint_plan}, Andrews proposes a two week Sprint, each day featuring a Daily Scrum, followed by completion of sprint tasks. Each week ends with Story Time, with the final week ending with a Retrospective, Sprint Plan and a time for exploration. Whilst I liked the general layout of the two weeks, I had to adapt it to my own project, as I had less time compared to Andrews. \\
+As seen in Figure~\ref{fig:two_week_sprint_plan}, Andrews proposes a two week Sprint, each day featuring a Daily Scrum, followed by completion of sprint tasks. Each week ends with Story Time, with the final week ending with a Retrospective, Sprint Plan and a time for exploration. The general layout of the two weeks had been organised and put together well, it needed adaptation for this project, due to the small time frame when compared to Andrews. \medskip
 
 \begin{figure}[h!]
     \centering
@@ -169,45 +169,45 @@ As seen in Figure~\ref{fig:two_week_sprint_plan}, Andrews proposes a two week Sp
  \label{fig:one_week_sprint_plan}
 \end{figure}
 
-In Figure~\ref{fig:one_week_sprint_plan}, Andrew's Sprint was adapted into a one week solution, which spanned the entire week rather than five days. \textit{Sprint Release} was removed as the project wouldn't be releasing  releasing to would be myself, so I could build up commits and features throughout the week. I moved Story planning and Sprint planning to the beginning of the week, to ensure a more focused week throughout. On top of this, my retrospective and exploration were moved to Sunday. \\
+In Figure~\ref{fig:one_week_sprint_plan}, Andrew's Sprint was adapted into a one week solution, which spanned the entire week rather than five days. \textit{Sprint Release} was removed as the project wouldn't be releasing to the public or testers, so instead commits and features could be built up throughout the sprint. Story planning and Sprint planning were moved to the beginning of the week, to ensure a more focused week throughout. On top of this, the retrospective and exploration were moved to Sunday. \medskip
 
-To support this, I kept a Sprint Log alongside my projects development, which was essentially a record of my daily scrum. Each day I kept a record of my intentions for the day, making sure to relate them to the stories planned and recorded on the Monday. This worked well, as Mondays also tended to be the day I met with my project's supervisor \& the day I assigned for Write-Up. Having Monday as a planning and Write Up day gave me a good sense of motivation and a good chance to rest from programming. \\
+To support this, a Sprint Log was kept alongside the projects development, which was essentially a record of the daily scrum. Each day a record was kept of the intentions for the day, making sure to relate them to the stories planned and recorded on the Monday. This worked well, as Mondays also tended to be the day a meeting was held with the project's supervisor and Monday tended assigned for Write-Up. Having Monday as a planning and Write Up day gave me a good sense of motivation and a good chance to rest from programming. \medskip
 
-Whilst I am doing an Agile Methodology, it does not mean that  project planning as a whole can be dismissed. On top of planning at the start of my Sprints, I also used a Gantt Chart to make sure I was on track with both Write Up, Sprints and Project deadlines. This, coupled with the Project Outline Spec, gave me a lot of insight into how I was going to shape the project, and ensure that it would be finished on time. \\
+Whilst an Agile Methodology is being used, it does not mean that project planning as a whole can be dismissed. On top of planning at the start of the Sprints, a Gantt Chart was also used to ensure that the project was on track with both Write Up, Sprints and Project deadlines. This, coupled with the Project Outline Spec, provided a lot of insight into how to shape the project was shaped, and ensured that it would be finished on time. \medskip
 
 \section{Relevant Technology}
 
 \subsection{C++}
 
-This project will be coded primarily in C++, as an aim of the project is to become more familiar and more comfortable with C++. As well as this, C++ has its own benefits - it tends to be very fast, is very often used for graphics coding due to the powerful libraries available, such as DirectX~\cite{directx_website}, OpenGL~\cite{opengl_website} and Vulkan. When writing in C++, I aimed to follow Google's Style Guide's~\cite{google_c_style_guide} naming conventions, in order to ensure a coherent and consistent code base.
+This project will be coded primarily in C++, as an aim of the project is to become more familiar and more comfortable with C++. As well as this, C++ has its own benefits - it tends to be very fast, is very often used for graphics coding due to the powerful libraries available, such as DirectX~\cite{directx_website}, OpenGL~\cite{OpenGL_website} and Vulkan. When writing in C++, it was decided to follow Google's Style Guide's~\cite{google_c_style_guide} naming conventions, in order to ensure a coherent and consistent code base.
 
 \subsection{OpenGL}
-In choosing C++, I had a lot of Graphics APIs to choose from. I disregarded DirectX's Direct3D due to its limited application in terms of cross platform - it only being compatible with Windows based hardware. Vulkan, intended to be a "Next Generation OpenGL" was also eventually disregarded as an option. Despite being newer, and potentially more powerful than OpenGL, it is also more verbose and therefore harder to pick up. As I am relatively new to 3D Graphics APIs, having only used high level JavaScript libraries beforehand, it was more advisable for me to use OpenGL - a cross platform graphics API. Using OpenGL gives me a better way to learn the fundamentals of low level graphics, as well as the option to move onto Vulkan in the future.
+In choosing C++, there were multiple Graphics APIs to choose from. DirectX's Direct3D was disregarded due to its limited application in terms of cross platform - it only being compatible with Windows based hardware. Vulkan, intended to be a "Next Generation OpenGL" was also eventually disregarded as an option. Despite being newer, and potentially more powerful than OpenGL, it is also more verbose and lower level and therefore harder to pick up. As the project is being made with relatively little experience with 3D Graphics APIs, previously only having experience with  high level JavaScript libraries beforehand, it was more advisable for to use OpenGL - a cross platform graphics API. Using OpenGL gives me a better way to learn the fundamentals of low level graphics, as well as the option to move onto Vulkan in the future.
 
 \subsection{GLSL}
 
-GLSL, or \textit{OpenGL Shading Language} is the language used by OpenGL for its shaders. Whilst I won't be focusing too much on shaders for this project, they are still needed by necessity, and so some GLSL will be used.
+GLSL, or \textit{OpenGL Shading Language} is the language used by OpenGL for its shaders. Whilst shaders wont be focused on too much during the project, they are still needed by necessity, and so some GLSL will be used.
 
 \subsection{CLion}
-I chose to use CLion~\cite{clion_jetbrains} as my IDE of choice, it offers powerful tools for a programmer, as well as a very slick user interface. Having used and enjoyed Jetbrains products previously, using CLion for this project seemed like an obvious choice.
+CLion~\cite{clion_jetbrains} was selected as the IDE of choice, as it offers powerful tools for a programmer, as well as a very slick user interface. Having had previous positive experiences with Jetbrains products, using CLion for this project seemed like an obvious choice.
 
 \subsection{LaTeX}
-In order to write this report, I chose to use LaTeX~\cite{latex_website}, due to its professional rendering of documents. I used overleaf.com~\cite{overleaf_website}, a cloud based LaTeX editor to edit my report in, which ensured that my data couldn't get lost.
+In order to write this report, LaTeX~\cite{latex_website} was used, due to its professional rendering of documents. Overleaf.com~\cite{overleaf_website}, a cloud based LaTeX editor was used to edit the report in, which ensured that the report's data couldn't get lost, as it also had Github integration.
 
 \subsection{Draw.io}
-Any chart used in this document were generated using draw.io~\cite{draw_io}, an easy to use chart maker, which gave me the option to save to cloud based providers, again allowing me to easily keep my data safe. 
+Any charts used in this document were generated using draw.io~\cite{draw_io}, an easy to use chart maker, which provided the option to save to cloud based providers, again allowing for an easy way to keep the chart data safe. 
 
 \subsection{Version Control - Git \& Github}
-This project was made using Git as version control, being saved to a private repository on Github~\cite{github}. This allowed easy rollbacks where needed, as well as ensuring that my data would not be lost, as it is saved on the cloud. In addition to this, Overleaf was used for version control and cloud saving for the report - it also uses a Git backend for this.
+This project was made using Git as version control, being saved to a private repository on Github~\cite{github}. This allowed easy rollbacks where needed, as well as ensuring that the project's data would not be lost, as it is saved on the cloud. In addition to this, Overleaf was used for version control and cloud saving for the report - it also uses a Git backend for this.
 
 
 \chapter{Design and Implementation}
 
 \section{Software Structure}
-As my project is so reliant on C++ and OpenGL, these two technologies dictate my Software's structure. C++ is primarily an Object Oriented Language, with OpenGL being a state machine and Graphics API, a structure already built into it. 
+As this project is so reliant on C++ and OpenGL, these two technologies dictate the Software's structure. C++ is primarily an Object Oriented Language, with OpenGL being a state machine and Graphics API, a structure already built into it. 
 \section{Algorithms}
 \subsection{Diamond Square}
-The Diamond Square algorithm~\cite{miller1986definition}, is an algorithm which randomly generates fractal based terrain, iterating over terrain using two steps - Diamond and Square. \\ 
+The Diamond Square algorithm~\cite{miller1986definition}, is an algorithm which randomly generates fractal based terrain, iterating over terrain using two steps - Diamond and Square. \medskip 
 
 \begin{figure}[h!]
     \centering
@@ -226,7 +226,7 @@ Diamond Square is performed on an initially flat grid. The steps (as pictured in
 \item \textit{Repeat Steps 2-4 while step size is greater than 1}
 \end{enumerate} 
 
-The Step Size (used in both the Square Step and the Diamond Step) is initialised to the grid's width -1. The Diamond step takes each square in the grid, of width Step Size, and sets the midpoint of the square to the average of its corner values, in addition to a random value (which decreases alongside Step Size). The Square step takes each diamond in the gird of width Step Size and sets the midpoint of the diamond to the average of its corner values, in addition to a random value (which decreases alongside Step Size). \\
+The Step Size (used in both the Square Step and the Diamond Step) is initialised to the grid's width -1. The Diamond step takes each square in the grid, of width Step Size, and sets the midpoint of the square to the average of its corner values, in addition to a random value (which decreases alongside Step Size). The Square step takes each diamond in the gird of width Step Size and sets the midpoint of the diamond to the average of its corner values, in addition to a random value (which decreases alongside Step Size). \medskip
 
 One of the main issues with Diamond Square are edge values - whilst all other values gain their height from the average of 4 other values, edge cases don't have enough data around them for this. There are two solutions to this - use the 3 available values, or wrap round the values to the other side of the grid. 
 
@@ -246,7 +246,7 @@ Lindenmayer System is a String manipulation algorithm, which recursively iterate
 3. Iterate over the string \textit{n} times, following the defined rules
 
 
-A simple example:\\
+A simple example:\medskip
 
 \textbf{Seed:} \textit{"A"}
 
@@ -265,11 +265,11 @@ Iteration 3: ABAAB
 
 Iteration 4: ABAABABA
 
-Iteration 5: ABAABABAABAAB\\
+Iteration 5: ABAABABAABAAB\medskip
 
 
 
-In Figure \ref{fig:l_system_AB}, Patterns can be generated easily and quickly. The next stage of Lindenmayer Systems is interpreting these patterns into something we can draw - this is achieved using "Turtle Graphics". The book, The Algorithmic Beauty of Plants~\cite{prusinkiewicz2012algorithmic} contains a comprehensive explanation of Lindenmayer Systems including these rules for 3D Lindenmayer Patterns:\\
+In Figure \ref{fig:l_system_AB}, Patterns can be generated easily and quickly. The next stage of Lindenmayer Systems is interpreting these patterns into something we can draw - this is achieved using "Turtle Graphics". The book, The Algorithmic Beauty of Plants~\cite{prusinkiewicz2012algorithmic} contains a comprehensive explanation of Lindenmayer Systems including these rules for 3D Lindenmayer Patterns:\medskip
 
 F: Move forward, by step \textit{d} and orientation \textit{n}. A line between {x, y, z} and {x', y', z'} is drawn.
 
@@ -291,7 +291,7 @@ $\wedge$: Pitch up by angle $\sigma$ along the xz axis (using the y rotation mat
 
 [: Push the current state of the turtle onto a stack
 
-]: Pop a state from the stack and apply it to the turtle\\
+]: Pop a state from the stack and apply it to the turtle\medskip
 
 These rules expand the usefulness of Lindenmayer Systems. [ and ] especially are useful for this project, as they allow for branching structures, allowing us to create trees.
 
@@ -305,30 +305,291 @@ These rules expand the usefulness of Lindenmayer Systems. [ and ] especially are
  \label{fig:quad_tree}
 \end{figure}
 
-One of the biggest optimisations to be made for this project will be Terrain Level Of Detail (LOD). This optimisation is split into two parts - the generation of the different levels of detail, alongside the combining of them, and deciding the amount of vertices to display. This could be done dynamically, but lacking the time and definition  to implement the complexity of a dynamic terrain renderer, instead we have something easier to use. Diamond Square, upon generating its terrain automatically generates different levels of detail which can easily used for this algorithm. These levels of detail can then be stitched together, depending on the technique used for LOD display. \\
+One of the biggest optimisation's to be made for this project will be Terrain Level Of Detail (LOD). This optimisation is split into two parts - the generation of the different levels of detail, alongside the combining of them, and deciding the amount of vertices to display. This could be done dynamically, but lacking the time and definition  to implement the complexity of a dynamic terrain renderer, instead we have something easier to use. Diamond Square, upon generating its terrain automatically generates different levels of detail which can easily used for this algorithm. These levels of detail can then be stitched together, depending on the technique used for LOD display. \medskip
 
-An often used technique for deciding what LOD each chunk of terrain will be is using a Quad Tree system to split up terrain~\cite{pajarola1998large}. A Quad Tree is a tree structure where each node has exactly four children. As seen in Figure~\ref{fig:quad_tree}, this tree structure can easily be applied to splitting up terrain. In Figure~\ref{fig:quad_tree}, each shade (as denoted by the numbers) represents a different Level Of Detail - the darker the shade, the higher the detail. whilst this can easily work, the main problem are cracks between each chunk of terrain. This can potentially be solved by working averaging the edges to the midpoint of each other, but this could potentially prove problematic as each edge has different numbers of triangles. A crude solution would involve moving the edge vertices of the edge triangles up to the same elevation as the edge of their neighbouring chunk. \\
+An often used technique for deciding what LOD each chunk of terrain will be is using a Quad Tree system to split up terrain~\cite{pajarola1998large}. A Quad Tree is a tree structure where each node has exactly four children. As seen in Figure~\ref{fig:quad_tree}, this tree structure can easily be applied to splitting up terrain. In Figure~\ref{fig:quad_tree}, each shade (as denoted by the numbers) represents a different Level Of Detail - the darker the shade, the higher the detail. whilst this can easily work, the main problem are cracks between each chunk of terrain. This can potentially be solved by working averaging the edges to the midpoint of each other, but this could potentially prove problematic as each edge has different numbers of triangles. A crude solution would involve moving the edge vertices of the edge triangles up to the same elevation as the edge of their neighbouring chunk. \medskip
 
-A solution to this problem is known as Restricted Quadtree Triangulation~\cite{pajarola1998large}. This works by restricting triangulation to points that match. Whilst this is definitely a more elegant method, I am unsure if I will have the time to implement it. 
+A solution to this problem is known as Restricted Quadtree Triangulation~\cite{pajarola1998large}. This works by restricting triangulation to points that match. Whilst this is definitely a more elegant method, time restrictions have stopped me from implementing this. 
 
 \subsection{L-System Rendering Optimisation Techniques}
-L-Systems when displayed on screen may use a lot of vertices, especially if displayed using 3D Primitives such as cylinders. In order to reduce the amount of vertices displayed we can use a similar technique to Terrain LOD. 
+L-Systems when displayed on screen may use a lot of vertices, especially if displayed using 3D Primitives such as cylinders. In order to reduce the amount of vertices displayed we can use a similar technique to Terrain LOD; the further away the trees are from the camera, the less detail they display. However, unlike the terrain, we cannot simply reduce the number of vertices in the tree. Instead, we use Billboards and Impostors. When the tree is far enough away, we simply replace it with a two dimensional sprite of the orientation of the tree facing you - known as an \textit{Impostor}. A billboard is used, when the tree is further away. Rather than choosing from a number of orientations of the tree to display, there is simply one, which is rotated to constantly face the camera. Due to the distance of the tree from the camera, the angle of which it is viewed does not matter, so we can simply display one orientation of it to the user.
 
 
 \chapter{Sprints}
-\section{Sprint 1 (12/02/18 - 18/02/18)}
-\section{Sprint 2 (19/02/18 - 25/02/18}
-\section{Sprint 3 (26/02/18 - 04/03/18)}
-\section{Sprint 4 (05/03/18 - 11/03/18)}
-\section{Sprint 5 (12/03/18 - 18/03/18)}
-\section{Sprint 6 (19/03/18 - 26/03/18)}
-\section{Sprint 7 (26/03/18 -  01/04/18)}
-\section{Sprint 8 (02/04/18 -  09/04/18)}
-\section{Sprint 9 (10/04/18 -  17/04/18)}
 
+At the start of each week, stories/sprint goals were set out of what was the week was aiming to achieve. The structure of a story was roughly:\medskip
+
+\textit{"As a \_\_\_\_\_\_, I need to \_\_\_\_\_\_, so that I can \_\_\_\_\_\_"}
+
+\section{Sprint 1 (12/02/18 - 18/02/18)}
+
+\subsection{Sprint Goals}
+
+\begin{enumerate}
+  \item \textit{As the Developer, I need to become more familiar with C++ and OpenGL, so that I can properly get going with the project. I will achieve this through research into the implementation of OpenGL and going through an OpenGL tutorial which I have already begun.}
+  
+  \item \textit{As the Student, I need to start thinking about my Major Project's Report, so that I will not have an overload of writing at Easter. I will achieve this by setting out the sections of my report and making a start on the introduction.}
+  \item \textit{As the Developer, I need to have a strong idea of how I am going to implement my project, in order to prevent floundering and confusion later on. I will achieve this through more Software Engineering Design Pattern and Architectural Pattern research. }
+\item \textit{As the Developer, I need a good idea of how much time I have left before my various deadlines, so that I can increase my drive to work. I will achieve this through further improving my Gantt Chart, namely adding more strong Major Project deadlines. }
+
+\end{enumerate}
+
+\subsection{Sprint Summary}
+
+The first sprint's main aim was to lat a good foundation on which to build the rest of my project. This was achieved through working through a set of OpenGL Tutorials~\cite{OpenGL_tutorial}, tweaking the project's Gantt Chart and Outline Spec, researching into potential Design Patterns (Model View Controller), learning more about OpenGL's general architecture, and more 3D Graphics basics (in particular, Model, View and Projection). \medskip
+
+A significant accomplishment was being able to display two different items in OpenGL. Whilst this may seem trivial, and an easy accomplishment, it meant the culmination of the knowledge learnt throughout the entire week - representing objects through vertices, Vertex Buffers and Colour Buffers, basic C++ syntax, and OpenGL syntax.\medskip
+
+\clearpage
+\section{Sprint 2 (19/02/18 - 25/02/18)}
+
+\begin{figure}[h!]
+    \centering
+  \includegraphics[width=0.5\textwidth]{Sprint2-1.png}
+ \caption{Initial triangles displayed. OpenGL essentially displaying garbage as both major algorithms within the DiamondSquare class were incorrectly implemented}
+ \label{fig:sprint2-1}
+\end{figure}
+
+\subsection{Sprint Goals}
+\begin{enumerate}
+    \item \textit{As the Developer, I need to set up a private git repository so that I can properly use version control in order to avoid major project screwups.
+    }
+    \item \textit{As the Developer, I need to begin implementation, in order to hit deadlines and be prepared enough for my mid project demonstration.}
+    \item\textit{As the Student, I need to continue working on my Report and identify which sections to work on this week so that I don't leave it to the last minute.}
+    
+\end{enumerate}
+
+\subsection{Sprint Summary}
+
+The second sprint's main aim was to finish building the foundation which was begun in the first sprint, whilst also beginning to implement some Diamond Square code. This was achieved through setting up an initial private Github repository, creation of the initial \LaTeX report file, and a first pass at the initial Diamond Square algorithm implementation. Throughout this sprint, a lot of learning of both OpenGL and C++'s syntax was taking place.  \medskip
+
+A significant accomplishment was being able to generate triangles without hardcoding the vertices for them. Even though a lot of the vertices in the triangles turned out to be OpenGL displaying garbage values it had been provided with (as seen in Fig~\ref{fig:sprint2-1}, the thrill of being able to show something on the screen, and being able to debug the project not only using the debugger but also visually, was a big achievement. 
+
+\clearpage
+
+\section{Sprint 3 (26/02/18 - 04/03/18)}
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{Sprint3-2.png}
+  \captionof{figure}{Generation of a flat plane}
+  \label{fig:sprint3-2}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{Sprint3-3.png}
+  \captionof{figure}{Initial output of the broken Diamond Square algorithm}
+  \label{fig:sprint3-3}
+\end{minipage}
+\end{figure}
+
+\subsection{Sprint Goals}
+\begin{enumerate}
+    \item \textit{As the Developer, I need to continue working on my Diamond Square Algorithm - fixing the algorithm itself and using the heightmap to generate a grid, so that I can have usable terrain. }
+\end{enumerate}
+\subsection{Sprint Summary}
+The third sprint's main aim was to continue to improve on the Diamond Square Algorithm, and perform small tweaks on the rest of the code. This was achieved by successfully interpreting a heightmap into vertices, as well as continued iteration over the Diamond Square algorithm in order to bring it to a successful implementation state. Personally, this week was very busy, and so not as much work could be achieved in comparison to other Sprints. \medskip
+
+A significant accomplishment of this sprint was both implementing the Camera's movement, as well as generating a flat plane, before applying the heightmap to the plane. This was buckets ahead of the previous week, and gave ample motivation to keep pressing ahead to make the Diamond Square algorithm work. 
+
+\clearpage
+\section{Sprint 4 (05/03/18 - 11/03/18)}
+
+\begin{figure}[h!]
+    \centering
+  \includegraphics[width=0.5\textwidth]{Sprint4-7.png}
+ \caption{Final state of the Diamond Square terrain by the end of the Sprint}
+ \label{fig:sprint4-1}
+\end{figure}
+
+\subsection{Sprint Goals}
+\begin{enumerate}
+    \item \textit{As the Developer I need to fix/re implement the Diamond Square algorithm so that it generates suitably random terrain, so that I can begin to implement details and have something impressive for my Mid Project Demonstration. }
+    \item \textit{As the Developer, I want to implement some code to make colour based on the height of the vertex, so that the terrain is not simply random colours.}
+    \item \textit{As the Developer, I want to increase the size and scalability of the Heightmap Implementation, allowing for more vertices to be displayed on screen, whilst shrinking the current vertices. }
+    \item \textit{As a student, I want to make a poster highlighting my project, in order to submit it for CS38220.}
+    \item \textit{As a student I need to begin to prepare for my mid project demonstration, in order to be able to present something of high enough quality. }
+    
+\end{enumerate}
+\subsection{Sprint Summary}
+
+The fourth sprint's main aim was to bring the Diamond Square Algorithm to a stage where it generated suitable terrain, as well as beginning to implement colour vertex code. The week also coincided with creation of a poster detailing the project, for a separate module. This was achieved by even more iteration on the Diamond Square algorithm, adjusting it to allow for it to output larger vertex buffers. Colour Vertex Buffers were begun to be worked on, but required more time than initially scoped for, due to syntax issues and the implementation being more complicated than initially thought.  \medskip
+
+A significant accomplishment during this sprint was managing to get the code to output vertices that began to take the correct form - becoming more \textit{terrain-like} in nature (see fig~\ref{fig:sprint4-1}) , instead of one long curve (see fig~\ref{fig:sprint3-3}), as in the previous sprint. 
+
+\clearpage
+
+\section{Sprint 5 (12/03/18 - 18/03/18)}
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{Sprint5-3.png}
+  \captionof{figure}{Initial terrain generation}
+  \label{fig:sprint}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{Sprint5-6.png}
+  \captionof{figure}{Top down view of the terrain}
+  \label{fig:sprint3-3}
+\end{minipage}
+\end{figure}
+
+
+\subsection{Sprint Goals}
+
+\begin{enumerate}
+    \item \textit{As a developer, I need to continue to look at the Diamond Square Algorithm and fully fix it this week - it is very nearly fixed, but continues to need tweaking. It would be good to have it working fully for my mid project demo. }
+    \item \textit{As a student, I need to continue work on my report, so that I don't fall too far behind overall.}
+    \item \textit{As the Developer, I want to increase the size and scalability of the Heightmap Implementation, allowing for more vertices to be displayed on screen, whilst shrinking the current vertices. }
+    \item \textit{As a developer, I'd like to add some basic colours to the heightmap, to make it look more natural.}
+    \item \textit{As a student, I need to finish prepping for my mid project demo, so that I can demo it well to my 2nd marker. }
+    
+\end{enumerate}
+\subsection{Sprint Summary}
+
+The fifth sprint's main aim was to finish work on the Diamond Square algorithm, which included vertices generated, size of grid and colour of grid. This was achieved through solving the final bugs in the Diamond Square algorithm, implementing multiple arrays defined by the size of the grid given to the method and a method which sets a vertex colour depending on its height. This was one of the most rewarding sprints of the entire project, as the terrain went from a glitchy multicoloured mess, to a cohesive plane, which was recognisable as terrain. This sprint was the last sprint I gave myself to work on the Diamond Square algorithm, as otherwise there would be not enough time left to work on other aspects of the project, so successfully implementing the terrain was a big relief. \medskip
+
+A significant accomplishment during this sprint was implementing colour into the terrain. As this project is graphics based, what appears onscreen is what matters most, so in implementing both colour and terrain in one sprint, the project's quality was lifted significantly.
+
+\clearpage
+
+\section{Sprint 6 (19/03/18 - 26/03/18)}
+
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{Sprint-7-After-Colour.png}
+    \captionsetup{width=.9\linewidth}
+  \captionof{figure}{Edited Diamond Square, with blended colours}
+  \label{fig:sprint7-c}
+\end{minipage}%
+\begin{minipage}{.5\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{Sprint-7-After-Greyscale.png}
+    \captionsetup{width=.9\linewidth}
+  \captionof{figure}{Diamond Square with a greyscale texture mapped to it (the higher the terrain, the lighter the colour)}
+  \label{fig:sprint7-g}
+\end{minipage}
+\end{figure}
+
+\subsection{Sprint Goals}
+
+\begin{enumerate}
+    \item \textit{As a developer, I need to begin to implement L-System trees, so that I can begin to look past simple implementation and move onto rendering optimisation.  }
+    \item \textit{As a developer, I need to fix triangle culling, so that I can half the amount of triangles rendered and increase the frame rate of the program.}
+    \item \textit{As a student, I need to write a lot more report to ensure that I am not falling behind. }
+    \item \textit{This week also has a deadline for professional issues, which will interfere with my work for the major project.}
+    
+\end{enumerate}
+\subsection{Sprint Summary}
+
+The sixth sprint's main aim is to research and subsequently begin implementation of L-Systems, as well as fixing small issues, such as face culling and a blended colour implementation. This was achieved by a lot of L-System research, before initial implementation of a class and method to build the initial string, a well as a quick rewrite of the order the vertices were pushed to the Vertex Buffer in order to enable face culling and blending colours by getting a percentage in between two shades and applying this to the terrain to create a gradient, rather than a block of colour. \medskip
+
+This sprint clashed with another module's assignment deadline, as well as the end of second semester, meaning that a day was lost to moving back home. However, in the last few minutes of the sprint, a change was made to Diamond Square which made the terrain a lot more detailed, instead of a smooth curve, the project gained a lot more of a realistic look. \medskip
+
+A significant achievement during this sprint was fully understanding L-Systems. A lot of my initial research was focused on terrain generation and OpenGL syntax, so finding time to understand and begin to implement L-Systems meant that implementation would be better prepared for the coming sprints. \clearpage
+\section{Sprint 7 (26/03/18 -  01/04/18)}
+
+\subsection{Sprint Goals}
+
+\begin{enumerate}
+
+\item \textit{As a developer, I need to get L-Systems to an initial state of being rendered, so that I can focus on improving them and where they are placed.}
+
+\item \textit{As a developer, I need to refactor the design of my code so that it is better structured and easier to maintain.}
+
+\item \textit{As a student, I need to add a lot more to my report. }
+\end{enumerate}
+
+\subsection{Sprint Summary}
+
+The seventh sprint's primary aim was to focus more on the write up of the project, as well as to prepare and begin implementation of L-Systems. This was achieved by researching GLM (OpenGL Mathematics)~\cite{creation2016opengl}, reading up more on L-System implementation~\cite{prusinkiewicz2012algorithmic} and beginning to implement the algorithms needed for L-Systems.\\
+
+A significant achievement during this sprint was getting a significant chunk of the report written - at this stage of the project the report should be eating into development time more and more.
+
+
+\section{Sprint 8 (02/04/18 -  08/04/18)}
+
+
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{tree1.png}
+    \end{minipage}%
+\begin{minipage}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{tree2.png}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{tree3.png}
+\end{minipage}
+\caption{Three examples of 2D trees generated using L-Systems}
+\end{figure}
+\begin{enumerate}
+\subsection{Sprint Goals}
+
+\item \textit{As a developer, I want to finish L-systems so I can get onto optimisations and restructuring the program as a hole.}
+
+\item \textit{As a student, I want to start my second section of my report, whilst also redrafting my first section.}
+\end{enumerate}
+
+\subsection{Sprint Summary}
+
+The eighth sprint's main aim was to fully implement L-Systems, as well as begin section two of the report. This will be achieved by implementing the rest of the L-System code, started in Sprint Seven. The trees were initially implemented using 2D maths, following examples in The Algorithmic Beauty of Plants~\cite{prusinkiewicz2012algorithmic}. The option to move the camera with WASD as well as the arrow keys was also added during this sprint. On top of this, code was cleaned up and restructured, a lot of world generation code moving into the World Maker class.
+
+A significant achievement in this sprint was getting 2D L-Systems working, meaning that the two key components to my project - terrain and trees are technically in. 
+
+
+\clearpage
+\section{Sprint 9 (09/04/18 -  15/04/18)}
+
+\subsection{Sprint Goals}
+\begin{enumerate}
+    \item \textit{ As a developer, I am going to work on placing L-System objects, in order to create a dense scene.}
+
+    \item \textit{ As a developer, I am going to look at and implement instance rendering for my L-System objects, in order to keep render time relatively low.}
+
+    \item \textit{ As a developer, I am going to look at LOD and Billboarding, so that I can keep render time low.}
+
+    \item \textit{ As a developer I am going to begin to look at my UI and how I can improve the current User Experience with my project.}
+
+    \item \textit{ As a student, I want to start my second section of my report, whilst also redrafting my first section. }
+\end{enumerate}
+
+
+\subsection{Sprint Summary}
+
+The ninth sprint was focused on implementing instance rendering, and redesigning the Diamond Square algorithm to store all of its generations, in order to then implement them with LOD optimisations. As well as this, my report was continually worked on. This was achieved by implementing instance rendering, alongside a basic tree placement method, as well as redesigning the Diamond Square class so that it saved each iteration it generated in a Vector. \medskip
+
+A significant accomplishment this sprint was getting instance rendering working. Instance rendering is a form of the Flyweight Design Pattern, and saves hugely on memory.
+
+\clearpage
+\section{Sprint 10 (16/04/18 -  22/04/18)}
+
+\subsection{Sprint Goals}
+
+\subsection{Sprint Summary}
+
+\clearpage
+\section{Sprint 11 (23/04/18 -  29/04/18)}
+
+\subsection{Sprint Goals}
+
+\subsection{Sprint Summary}
+
+\section{Sprints End}
 \chapter{Tests}
 
-\chapter{Results}
+\chapter{Implementation Results}
 \section{Analysis}
 \subsection{Implementation Challenges}
 \subsection{Overall Problems and Issues}
