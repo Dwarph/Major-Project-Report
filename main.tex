@@ -26,6 +26,70 @@ CS39440}
   }}
 \maketitle
 
+\centering
+    {\LARGE\bf Acknowledgements}
+
+
+I am grateful to...
+
+I'd like to thank..
+
+\clearpage
+ \raggedright
+ 
+ 
+%%%
+%%% You must sign the declaration of originality. 
+%%%
+%%% You are submitting this electronically. Therefore, to sign, you 
+%%% type your name and date to replace the .... characters. 
+%%%
+\begin{center}
+    {\LARGE\bf Declaration of originality}
+\end{center}
+
+I confirm that:
+
+\begin{itemize}
+\item{This submission is my own work, except where 
+clearly indicated.}
+
+\item{I understand that there are severe penalties for Unacceptable Academic Practice, which can lead to loss of marks or even the withholding of a degree.}
+ 
+\item{I have read the regulations on Unacceptable Academic Practice from the University's Academic Quality and Records Office (AQRO) and the relevant sections of the current Student Handbook of the Department of Computer Science.}
+ 
+\item{In submitting this work I understand and agree to abide by the University's regulations governing these issues.}
+\end{itemize}
+
+\vspace{2em}
+Name: Pip Turner  \\
+
+\vspace{1em}
+Date: 30/04/18 \\
+
+%%% 
+%%% We would like to make a selection of final reports available to students that take 
+%%% this module in future years. To enable us to do this, we require your consent. You 
+%%% are not required that you do this, but if you do give your consent, then we will have 
+%%% the option to select yours as one of a number of reports as examples for other 
+%%% students. If you would like to give your consent, then please include the following 
+%%% text and type your name and date to replace the .... characters. 
+%%% 
+%%% If you do not wish to give your consent, please remove this from your report. 
+%%%
+\vspace{1em}
+\begin{center}
+    {\LARGE\bf Consent to share this work}
+\end{center}
+
+By including my name below, I hereby agree to this dissertation being made available to other students and academic staff of the Aberystwyth Computer Science Department.  
+
+\vspace{2em}
+Name: Pip Turner  \\
+
+\vspace{1em}
+Date: 30/04/18 \\
+
 \setlength{\headheight}{20.2pt}
 \pagestyle{fancy}
 \setlength{\headsep}{0.2in}
@@ -156,7 +220,7 @@ With this in mind, One Man Scrum Methodology was selected to be used. In a One M
 \begin{figure}[h!]
     \centering
   \includegraphics[width=0.9\textwidth]{RayWenderlich}
- \caption{A proposed two week Sprint plan by Alex Andrews, sourced from https://www.raywenderlich.com/162654/scrum-one-bring-scrum-one-person-operation . Used with permission.}
+ \caption [A proposed two week Sprint plan by Alex Andrews]{A proposed two week Sprint plan by Alex Andrews, sourced from https://www.raywenderlich.com/162654/scrum-one-bring-scrum-one-person-operation . Used with permission.}
  \label{fig:two_week_sprint_plan}
 \end{figure}
 
@@ -212,7 +276,7 @@ The Diamond Square algorithm~\cite{miller1986definition}, is an algorithm which 
 \begin{figure}[h!]
     \centering
   \includegraphics[width=0.9\textwidth]{Diamond_Square}
- \caption{Diamond Square steps, by Christopher Ewin CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=42510593}
+ \caption[Diamond Square steps, by Christopher Ewin]{Diamond Square steps, by Christopher Ewin CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=42510593}
  \label{fig:diamond_square_steps}
 \end{figure} 
 
@@ -307,7 +371,7 @@ These rules expand the usefulness of Lindenmayer Systems. [ and ] especially are
 
 One of the biggest optimisation's to be made for this project will be Terrain Level Of Detail (LOD). This optimisation is split into two parts - the generation of the different levels of detail, alongside the combining of them, and deciding the amount of vertices to display. This could be done dynamically, but lacking the time and definition  to implement the complexity of a dynamic terrain renderer, instead we have something easier to use. Diamond Square, upon generating its terrain automatically generates different levels of detail which can easily used for this algorithm. These levels of detail can then be stitched together, depending on the technique used for LOD display. \medskip
 
-An often used technique for deciding what LOD each chunk of terrain will be is using a Quad Tree system to split up terrain~\cite{pajarola1998large}. A Quad Tree is a tree structure where each node has exactly four children. As seen in Figure~\ref{fig:quad_tree}, this tree structure can easily be applied to splitting up terrain. In Figure~\ref{fig:quad_tree}, each shade (as denoted by the numbers) represents a different Level Of Detail - the darker the shade, the higher the detail. whilst this can easily work, the main problem are cracks between each chunk of terrain. This can potentially be solved by working averaging the edges to the midpoint of each other, but this could potentially prove problematic as each edge has different numbers of triangles. A crude solution would involve moving the edge vertices of the edge triangles up to the same elevation as the edge of their neighbouring chunk. \medskip
+An often used technique for deciding what LOD each chunk of terrain will be is using a Quadtree system to split up terrain~\cite{pajarola1998large}. A Quadtree is a tree structure where each node has exactly four children. As seen in Figure~\ref{fig:quad_tree}, this tree structure can easily be applied to splitting up terrain. In Figure~\ref{fig:quad_tree}, each shade (as denoted by the numbers) represents a different Level Of Detail - the darker the shade, the higher the detail. whilst this can easily work, the main problem are cracks between each chunk of terrain. This can potentially be solved by working averaging the edges to the midpoint of each other, but this could potentially prove problematic as each edge has different numbers of triangles. A crude solution would involve moving the edge vertices of the edge triangles up to the same elevation as the edge of their neighbouring chunk. \medskip
 
 A solution to this problem is known as Restricted Quadtree Triangulation~\cite{pajarola1998large}. This works by restricting triangulation to points that match. Whilst this is definitely a more elegant method, time restrictions have stopped me from implementing this. 
 
@@ -533,6 +597,8 @@ A significant achievement during this sprint was getting a significant chunk of 
   \includegraphics[width=.9\linewidth]{tree3.png}
 \end{minipage}
 \caption{Three examples of 2D trees generated using L-Systems}
+ \label{fig:sprint8}
+
 \end{figure}
 \begin{enumerate}
 \subsection{Sprint Goals}
@@ -546,11 +612,18 @@ A significant achievement during this sprint was getting a significant chunk of 
 
 The eighth sprint's main aim was to fully implement L-Systems, as well as begin section two of the report. This will be achieved by implementing the rest of the L-System code, started in Sprint Seven. The trees were initially implemented using 2D maths, following examples in The Algorithmic Beauty of Plants~\cite{prusinkiewicz2012algorithmic}. The option to move the camera with WASD as well as the arrow keys was also added during this sprint. On top of this, code was cleaned up and restructured, a lot of world generation code moving into the World Maker class.
 
-A significant achievement in this sprint was getting 2D L-Systems working, meaning that the two key components to my project - terrain and trees are technically in. 
+A significant achievement in this sprint was getting 2D L-Systems working (see fig~\ref{fig:sprint8}, meaning that the two key components to my project - terrain and trees are technically in. 
 
 
 \clearpage
 \section{Sprint 9 (09/04/18 -  15/04/18)}
+
+\begin{figure}[h!]
+    \centering
+  \includegraphics[width=0.5\textwidth]{Sprint9-1.png}
+ \caption{An example of instance rendering - only one copy of the each of the three models of trees is stored.}
+ \label{fig:sprint9-1}
+\end{figure}
 
 \subsection{Sprint Goals}
 \begin{enumerate}
@@ -570,23 +643,79 @@ A significant achievement in this sprint was getting 2D L-Systems working, meani
 
 The ninth sprint was focused on implementing instance rendering, and redesigning the Diamond Square algorithm to store all of its generations, in order to then implement them with LOD optimisations. As well as this, my report was continually worked on. This was achieved by implementing instance rendering, alongside a basic tree placement method, as well as redesigning the Diamond Square class so that it saved each iteration it generated in a Vector. \medskip
 
-A significant accomplishment this sprint was getting instance rendering working. Instance rendering is a form of the Flyweight Design Pattern, and saves hugely on memory.
+A significant accomplishment this sprint was getting instance rendering working (see fig~\ref{fig:sprint9-1}. Instance rendering is a form of the Flyweight Design Pattern, and saves hugely on memory.
 
 \clearpage
 \section{Sprint 10 (16/04/18 -  22/04/18)}
 
+\begin{figure}[h!]
+\centering
+\begin{minipage}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{Sprint10-1.png}
+    \end{minipage}%
+\begin{minipage}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{Sprint10-2.png}
+\end{minipage}
+\begin{minipage}{.3\textwidth}
+  \centering
+  \includegraphics[width=.9\linewidth]{Sprint10-3.png}
+\end{minipage}
+\caption{Three different Levels Of Detail of Terrain}
+\end{figure}
 \subsection{Sprint Goals}
 
+\begin{enumerate}
+
+    \item \textit{As a developer I want to further implement LOD for terrain, drastically cutting down on the amount of vertices rendered.}
+
+    \item \textit{As a developer I am going to begin to look at my UI and how I can improve the current User Experience with my project.}
+
+    \item \textit{As a developer, I am going to begin to implement unit tests into my code, in order to create a more robust program. }
+    \item \textit{As a Student I want to add at least 2000+ more words to my report.}
+
+\end{enumerate}
+
 \subsection{Sprint Summary}
+
+The tenth sprint's main aim was to add in Level Of Detail optimisations for terrain, look at implementing some UI and Unit Tests and do a lot of report work. Unit tests were implemented using Boost~\cite{boost}, UI was considered with NanoGUI~\cite{nanogui}. The most work was done on continuing to implement Quadtree LOD tessellation, continuing to adapt the Diamond Square class to store all of its iterations. \medskip
+
+A significant accomplishment during this sprint was reworking my entire Diamond Square class to store all iterations. This prepares the project for the implementation of quadtrees in the following sprint. Getting Unit Tests up and going for the project was also a good achievement, as ensuring that everything is working by the end of the project is useful.
+
 
 \clearpage
 \section{Sprint 11 (23/04/18 -  29/04/18)}
 
 \subsection{Sprint Goals}
+\begin{enumerate}
+    \item\textit{ As a developer I want to further implement LOD for terrain, drastically cutting down on the amount of vertices rendered.}
+
+\item\textit{ As a developer I am going to begin to look at my UI and how I can improve the current User Experience with my project.}
+
+\item\textit{ As a developer, I am going to continue to implement unit tests into my code, in order to create a more robust program. }
+
+\item\textit{ As a developer, I want to have one more go at attempting to make my trees 3D. }
+
+\item\textit{ As a Student I want to add at least 2000+ more words to my report.}
+
+\end{enumerate}
 
 \subsection{Sprint Summary}
+Sprint Eleven's main aims were to tie up all loose ends in terms of programming, whilst finding time to continue to contribute to the report. This was achieved through getting a working version of Quadtree Level Of Detail optimisation (albeit one that had a negative effect on the frame rate rather than a positive one), more unit tests being implemented and more words being written. Quaternions were also used to replace the 2D maths in the L-Systems, but it was not sufficient enough progress to get 3D trees to work. \medskip
 
-\section{Sprints End}
+A significant accomplishment during this sprint was getting Quadtrees to work as intended.
+
+\section{Post Sprint Progress}
+The sprints were planned to finish to give me five days to focus on writing my report and chasing up any loose ends (such as further unit tests). A couple more features were also added to the project, in order to ensure that the final demo of the project goes smoothly. These were mainly keyboard shortcuts to perform the following actions:
+
+\begin{itemize}
+    \item Displaying and hiding the terrain
+    \item Displaying and hiding the L-Systems
+    \item Selecting a Level Of Detail to display
+    \item Selecting a colour palette to display
+\end{itemize}
+
 \chapter{Tests}
 
 \chapter{Implementation Results}
