@@ -157,6 +157,14 @@ The main work involved in this aim will be the implementation and subsequent opt
 
 The other main aim of this project is in regards to the skills and technologies learnt whilst working on it. This project was begun with a basic understanding of C++, basic ideas about procedural generation algorithms and no understanding of OpenGL (albeit some basic knowledge of graphics and graphics libraries). Upon completion of this project, there should be a huge jump in knowledge and skills learnt, with a greater appreciation and understanding of C++, procedural generation algorithms and OpenGL.\medskip
 
+\section{Project Objectives}
+
+\begin{itemize}
+    \item Produce a 3D, procedurally generated terrain
+    \item Produce 3D, procedurally generated objects (such as trees and flowers)
+    \item Ensure that the scene renders smoothly
+\end{itemize}
+
 \chapter{Research}
 
 In researching into this project, suitable algorithms were needed to be found. Two categories were decided upon - Terrain and Objects on the Terrain. \medskip
@@ -1064,9 +1072,9 @@ An interesting direction to go in the future of this project is using it as a co
 The  most obvious, is more content. At the moment, the project only has l-systems and terrain implemented. Integrating more content is a quick way to make the project feel more alive and of higher quality (to a certain extent). Moving animals, grass and flowers, trees swaying in the wind or shedding leaves (using a particle system) are all more content which could be added.
 
 \chapter{Conclusion and Evaluation}
-\section{Evaluation}
+In this chapter, aims, objectives and decisions set out in the project will be evaluated and discussed. 
 
-\subsection{Project Aims}
+\section{Project Aims}
 \subsection{Create a 3D Procedurally Generated Nature Scene}
 The first aim of this project was to create a 3D procedurally generated nature scene. The basic aim was to implement Terrain and Trees as an initial goal - one that has been achieved. The project generates a scene which is different each time, with procedural terrain and procedural trees with an algorithm which places them in random positions each iteration. \medskip
 
@@ -1076,7 +1084,66 @@ However, the scene is still quite basic, mainly due to the current L-System impl
 
 The second aim of the project is one is more fulfilled than the first. The project demonstrates a confidence with the core fundamentals of low level graphics, C++, and OpenGL. At the beginning of the project, there was only a vague familiarity with C++, in comparison to the end of the project, where a complex program such as this has been built.  There is still a lot more knowledge to be learnt - namely the intricacies of OpenGL and C++, but overall this aim has been comfortably reached.
 
+\section{Project Objectives}
+
+\subsection{ Produce a 3D, procedurally generated terrain}
+The project produces a 3D procedurally generated terrain using the diamond square algorithm. The terrain is different in each instance of the program and looks visually appealing at a basic level. It could be improved with the introduction with more detail, but that would require working optimisation techniques, something the project currently lacks.
+
+\subsection{Produce 3D, procedurally generated objects (such as trees and flowers)}
+
+The project produces 2D Lindenmayer Systems - fractals which have the appearance of plants. Whilst this objective is perhaps not entirely failed - the L-Systems are procedurally generated and vary upon each program instance. However, they are still only 2D, both in terms of space taken up and in terms of rendering technique - they are currently rendered using GL\_LINES, not 3D triangle meshes. This objective would have been better met if this were not the case.
+
+\subsection{Ensure that the scene renders smoothly}
+The project renders smoothly, but only due to the low amount of vertices in the scene. Whilst, thanks to modern computers, we are still able to use a lot of vertices, it would be preferable to increase the amount using optimisation techniques. An attempt was made to introduce Quadtree Level Of Detail tessellation, however the full implementation remains flawed due to time constraints. This then, limits the project to a fairly low level of vertices overall, in order to keep a solid frame rate.  
+
+Overall, the requirements could have done with perhaps more guidance and more detail than they currently contain. Whilst they give a great overarching view of the project, they are perhaps too wide reaching. More specific requirements, detailing a better understanding of the final project would have been more useful to the project and a better driving force than the current requirements, which could be simply summarised as "Make a procedurally generated nature scene".
+
+\section{Design}
+
+\subsection{Tools and Platform}
+Whilst from a learning standpoint, C++ and OpenGL were good choices as they were the platforms of which the project was aimed at learning from, if thought of from a commercial aspect there are some better choices the project could have used. Whilst C++ provides a great Object Oriented experience, fast runtimes and easy memory management, and OpenGL provides a very powerful way to display 3D graphics, a web friendly language and framework may have been a better choice for accessibility. If JavaScript and Three.js ~\cite{cabello2010three} were used then this project could have been hosted on a web based platform, allowing for platform independence and an easier way to showcase the work done. \\
+
+However, using OpenGl and C++ has provided invaluable information about more low-level graphics and graphics programming than JavaScript and Three.js could have provided. In using them, it has provided a valuable learning experience, giving more knowledge of how lower level graphics works. 
+
+\subsection{Software Architecture and Structure}
+
+The projects overarching design solution is one of which fulfills the requirements neatly, whilst not being overly complicated. When approaching a project is approached from a perspective of little initial knowledge, it is easy to introduce bad programming techniques in order to reach achievable goals. Whilst this did happen, through constant refactoring, redesign and consideration of the overall architecture, the overall design evolved and was constantly considered each sprint. The decisions made to model both L-Systems and the Diamond Square Terrain as an object were good, as it improved the project's overall structure, consequently enabling an easy workflow. Design is not only about creating something which runs efficiently, but is also about creating something which can be easy to follow and easily maintainable - two points which have been achieved in this project. The only improvements to design would be on the OpenGL side, and would require greater research and understanding of it - something which was not available within the time allocated to the project.
     
+    
+\section{Software Lifecycle}
+
+Whilst this project definitely adhered to Scrum's core values~\cite{alliance2008scrum}, there was room for improvement in terms of sticking to Scrum's structure.
+
+\subsection{Values}
+
+\begin{itemize}
+    \item Focus\\
+    This project was definitely focused. Each sprint had a separate focuses in them, defined at the start of each sprint. If anything, perhaps even more focus would have helped this project - some sprints towards the end of the project became too crowded and began to lose focus. However, overall, focus has been kept.
+    \item Courage\\
+    This project required courage in understanding OpenGL and C++'s syntax enough to begin to have a basic grasp of them and manipulate them in order to fulfill the requirements of the project. 
+    \item Openness\\
+    This project was kept open. In meeting weekly with the supervisor of the project and other students, an openness was required in admitting how much progress had been made. In being open, we were able to address mistakes made and pinpoint how to fix them. 
+    \item Commitment\\
+    This project required commitment over the months worked on it to keep pushing ahead with it and refusing to give up. Without commitment this project could have floundered and never gotten off the ground
+\end{itemize}
+
+\subsection{Structure}
+Scrum's structure revolves around sprints and stories - something this project also revolved around. However, Stories are meant to be assigned story points and kept track of, something this project failed to do. Instead of keeping specific track of them, stories were simply allocated as \textit{"Sprint Goals"} at the start of each sprint. This took away from the focus of the sprint and should have been followed.
+
+\section{Suggested Improvements}
+Overall, this project was developed well and timely. Whilst it is still perhaps a prototype, and there is definitely room for improvement, it is still a success in some form. If this project were to be repeated, including learning everything again, these suggestions would need to be taken into account:
+
+\begin{itemize}
+    \item Better Design \\
+    Pre-Sprint design could have been better thought out. Whilst some design work was done, it was mainly in the form of research and not actualised. Setting out better objectives, planning a better system structure and planning ahead in terms of methods could have helped this project.
+    
+    \item More focused sprints and stories\\
+    Towards the end of the project, sprints began to get messy, trying to cram too many big solutions into one sprint. Focusing sprints on one or two things, could have helped. Perhaps even shortening Sprints to enable a focused few days on one story could have helped, instead of sticking to seven day sprints. 
+    
+    \item A stronger focus on ensuring that optimisation was built alongside core algorithms \\
+    Optimisation felt a bit left behind in this project. The attempt to implement it in the last few sprints wasn't good enough - it should have been considered and implemented in parallel to each object it applied to. 
+\end{itemize}
+  
 \clearpage
 
 \appendix
