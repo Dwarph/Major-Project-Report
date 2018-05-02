@@ -10,13 +10,25 @@
 \usepackage{fancyhdr}
 \usepackage{wrapfig}
 \usepackage{caption}
+\usepackage[T1]{fontenc}
+\usepackage{listings}
+\usepackage{xcolor}
 
+\lstset{language=C++,
+  breaklines=true,
+  breakatwhitespace=true,
+                basicstyle=\small\tt,
+                keywordstyle=\color{blue}\ttfamily,
+                stringstyle=\color{red}\ttfamily,
+                commentstyle=\color{green}\ttfamily,
+                morecomment=[l][\color{magenta}]{\#}
+}
 
 
 
 \begin{document}
 \title{3D Procedurally Generated Nature Scene}
-\author{Pip Turner - pit@aber.ac.uk  \\
+\author{Author: Pip Turner - pit@aber.ac.uk  \\
 Supervisor: Reyer Zwiggelaar \\
 G400 Computer Science \\
 CS39440}
@@ -98,8 +110,7 @@ Date: 30/04/18 \\
 \fancyhead[L]{\leftmark}
 \fancyhead[R]{\rightmark}
 
-\fancyfoot[CE,CO]{\leftmark}
-\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[C]{\thepage}
 
 \listoffigures
 \listoftables
@@ -237,7 +248,16 @@ In Figure~\ref{fig:one_week_sprint_plan}, Andrew's Sprint was adapted into a one
 
 To support this, a Sprint Log was kept alongside the projects development, which was essentially a record of the daily scrum. Each day a record was kept of the intentions for the day, making sure to relate them to the stories planned and recorded on the Monday. This worked well, as Mondays also tended to be the day a meeting was held with the project's supervisor and Monday tended assigned for Write-Up. Having Monday as a planning and Write Up day gave me a good sense of motivation and a good chance to rest from programming. \medskip
 
-Whilst an Agile Methodology is being used, it does not mean that project planning as a whole can be dismissed. On top of planning at the start of the Sprints, a Gantt Chart was also used to ensure that the project was on track with both Write Up, Sprints and Project deadlines. This, coupled with the Project Outline Spec, provided a lot of insight into how to shape the project was shaped, and ensured that it would be finished on time. \medskip
+\begin{figure}[h!]
+    \centering
+  \includegraphics[width=1\textwidth]{GanttChart.png}
+ \caption{A Gantt Chart for the entire project, made with Gantt Project~\cite{gantt}}
+ \label{fig:gantt_chart}
+\end{figure}
+
+
+Whilst an Agile Methodology is being used, it does not mean that project planning as a whole can be dismissed. On top of planning at the start of the Sprints, a Gantt Chart (see fig~\ref{fig:gantt_chart} was also used to ensure that the project was on track with both Write Up, Sprints and Project deadlines. This, coupled with the Project Outline Spec, provided a lot of insight into how to shape the project was shaped, and ensured that it would be finished on time. \medskip
+
 
 \section{Relevant Technology}
 
@@ -264,11 +284,214 @@ Any charts used in this document were generated using draw.io~\cite{draw_io}, an
 \subsection{Version Control - Git \& Github}
 This project was made using Git as version control, being saved to a private repository on Github~\cite{github}. This allowed easy rollbacks where needed, as well as ensuring that the project's data would not be lost, as it is saved on the cloud. In addition to this, Overleaf was used for version control and cloud saving for the report - it also uses a Git backend for this.
 
+%%%%%%%%%%%%%%%% NEW CHAPTER %%%%%%%%%%%%%%%%
 
 \chapter{Design and Implementation}
 
+\section{Overall Architecture}
+
+The project will perform the following processes in order when run: \bigskip
+
+\textbf{Open a Window} \par
+Firstly, the project will open a window, using GLFW~\cite{berglund2006glfw}, in order to show that it is running. \medskip
+
+\textbf{Generate Diamond Square Heightmap} \par
+The project will then generate a Diamond Square Heightmap, as the heights generated will inform a lot of the rest of the project. \medskip
+
+\textbf{Generate Terrain Vertices} \par
+The project will then convert the Heightmap into triangle based vertices, passing it to OpenGL's vertex buffer. \medskip
+
+\textbf{Generate Terrain Colours} \par
+The project will then generate the terrain colours, based off of the terrain's height. \medskip
+
+\textbf{Generate L-Systems} \par
+The project will then generate L-System fractals \medskip
+
+\textbf{Generate L-System Positions} \par 
+The project will then generate the positions of the fractals \medskip
+
+\textbf{Draw Loop} \par
+The project then enters the draw loop, not leaving until "Esc" is pressed. \medskip
+
+\textbf{Check for Key Input} \par 
+The project then checks for any input from the user, responding accordingly. \medskip
+
+\textbf{Compute Camera MVC} \par 
+The project then computes the camera's view matrix based on mouse and keyboard input. \medskip
+
+\textbf{Draw Vertices} \par 
+The project then draws the terrain, followed by trees. \medskip
+
 \section{Software Structure}
-As this project is so reliant on C++ and OpenGL, these two technologies dictate the Software's structure. C++ is primarily an Object Oriented Language, with OpenGL being a state machine and Graphics API, a structure already built into it. 
+As this project is so reliant on C++ and OpenGL, these two technologies dictate the Software's structure. C++ is primarily an Object Oriented Language, with OpenGL being a state machine and Graphics API, a structure already built into it. \\
+
+\begin{figure}[h!]
+    \centering
+\includegraphics[width=0.8\textwidth]{Architecture.png} 
+\caption{Diagram illustrating the architecture of the project}
+\label{architecture}
+\end{figure} 
+
+In order to keep the project organised, the code was split up into two distinct parts - specific OpenGL related code, and procedural generation. As seen in fig~\ref{architecture}, OpenGL draw loop (\textit{main.cpp in the source code) controls the project} controls the OpenGL related code, whilst World Maker controls the Procedural Generation aspects of it. Separating out these two parts helped motivate a code base which was both modular in design (allowing for easily changeable code), and created an architecture which allowed for easy feature additions. \\
+
+Diamond Square and L-Systems were split off into their own object classes, in order to allow for easy creation and generation of them, as well as to enable a more modular code design. A modular design philosophy has driven the majority of code in this project. In designing each class, functionality was separated into different, independent methods, allowing for a good deal of re-usability and flex-ability in bug fixing. C++'s vectors played a big part in ensuring the flexibility of code. Instead of relying on fixed length arrays, which create quite static code, using vectors (which can be accessed in a similar way to arrays if needed) allowed for a more dynamic and easily added to program. \\
+
+\begin{figure}[h!]
+\centering
+  \fbox{\includegraphics[width=1\textwidth]{LSystemGeneration.png}}
+ \caption{The method which defines and generates L Systems, an example of the usefulness of modularity.}
+ \label{fig:tree_generation}
+\end{figure}
+
+As seen in fig~\ref{fig:tree_generation}, modularity can be extremely useful. This method has three L-Systems defined, but we can theoretically define as many L-Systems as the vector (a class-private single dimension vector instance variable named \textit{trees\_} ) can hold. Once all L-Systems are defined, the program then iterates over the vector storing them, generating then and then binding the vertices to OpenGL's vertex buffer. The program will simply display as many L-Systems as defined, without the need for any additional code. In separating out functionality into modular classes and functions, it is not an issue to tweak and adjust the program once the overall structure has been implemented.
+
+\subsection{Initial Class Structure}
+The classes were initially designed as follows. Quadtrees had not yet been considered upon initial class design. As this was an initial design, this was intended more of a rough outline rather than a concrete architecture. The idea was that the project could build from the core intention of this design, rather than rigidly sticking to it. 
+
+\subsection{Main.cpp}
+
+The class Main.cpp will initially be based off of the tutorials found on http://opengl-tutorial.org~\cite{opengl_tutorial}.
+
+\subsubsection{Instance Variables}
+\textit{GLFWwindow window.} 
+
+This class will only store a variable of the window being used, as it is needed for OpenGL's draw loop.
+\subsubsection{Functions}
+\textit{int main()}\\
+This class will contain the "main" function for the project, the designated start of the program. \\
+
+\textit{void OpenGLMagic}\\
+This method will set up what is necessary for OpenGL to draw the world, before entering the draw loop.
+
+
+\subsection{DiamondSquare.cpp}
+
+This class will handle all things to do with Diamond Square generation. 
+
+\subsubsection{Instance Variables}
+
+Diamond Square will store the heightmap initially generated, allowing for it to be easily accessible to other classes.
+
+\subsubsection{Methods}
+
+\textit{GenerateHeightMap}\\
+This method will generate the heightmap, by following the Diamond Square algorithm. \medskip
+
+\textit{Generate Vertices}
+This method will take the heightmap generated, and from it generate vertices which can be interpreted by OpenGL to draw triangles. 
+
+\subsection{L\_System.cpp}
+This class handles all things to do with L\_System generation.
+
+\subsubsection{Structs}
+
+\textbf{Rule}\\
+\textit{char axiom}\\
+\textit{string rule}\medskip
+
+The rule Structure helps us represent rules to apply to the L-System string. For example, in the rule "B -> AB", "B" is the axiom, and "AB" is the rule.
+
+\subsubsection{Instance Variables}
+\textit{string seed} - the initial seed the L\_System grows from\\
+\textit{string fractal string} - the final string after iterations\\
+\textit{int no\_of\_iterations} - the number of times the string will be iterated over\\
+\textit{angle\_mod} - the angle of which to turn\\
+\textit{rules} - all the rules to be applied to the seed\\
+\textit{vertices} - the eventual interpretation of the final string as a set of vertices\\
+
+\subsubsection{Methods}
+
+\textit{Generate Fractal}\\
+
+This method will take the seed, iterate over it  "no\_of\_iterations" times, following the rules stored in the class.
+
+\textit{Generate Vertices}\\
+
+This method will take the final fractal string and interpret it according to the rules of Turtle Graphics.
+
+\clearpage
+
+\section{Final Design}
+
+Much like in fig~\ref{architecture}, the final design is split up into two parts - the classes relevant to OpenGL, and the classes generating the vertices to push to OpenGL. Due to the size of the full UML chart, these two sections have also been broken down into separate charts.
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=1\textwidth]{OpenGL_UML.png}
+ \caption{UML of classes relating to OpenGL}
+ \label{fig:opengl_uml}
+\end{figure}
+
+
+\subsection{OpenGL Related Class Structure}
+
+The following classes are related to the OpenGL half of my project. They include the main class (\textit{main.cpp)}, Shaders(\textit{shader.cpp}, \textit{ColorFragmentShader.fragmentshader}, \textit{TransformVertexShader.vertexshader}, \textit{l\_system\_colour.frag.glsl}, \textit{l\_system\_transform.vert.glsl}, and the class which recalculates the camera's MVP, as well as handles user input (\textit{controls.cpp}). When creating the project, the tutorials found on http://opengl-tutorial.org~\cite{opengl_tutorial} were followed. Some of the code used within those tutorials was reused in this project, with permission. \textit{shader.cpp}, \textit{ColorFragmentShader.fragmentshader} and \textit{TransformVertexShader.vertexshader} remain unchanged when compared with tutorial code. \textit{l\_system\_colour.frag.glsl} and \textit{l\_system\_transform.vert.glsl} were written independently, but with guidance from previous tutorial files. \textit{controls.cpp} and \textit{main.cpp}) began initially as code simply taken from the tutorial, but both have had extensive reworks and changes, when compared to the initial code provided by the tutorial. Specifically, whilst the methods \textit{computeMatricesFromInputs()}, \textit{getViewMatrix()} and \textit{getProjectionMatrix()} remain largely unchanged from tutorial code, the rest of \textit{controls.cpp} is my own work. In \textit{main.cpp}, most of the function \textit{WindowSetup()} is largely unchanged when compared to tutorial code, but the rest of the class is my own work, based off of the initial code learnt from the tutorial. \\
+
+\subsection{main.cpp} 
+
+This class controls everything else in the program, as well as sets up a window and then displays the vertices needed into the window. Whilst this could have been abstracted out into a different class which this class calls, it would have been functionally identical, so the decision was made to keep the code in \textit{main.cpp}. In the method \textit{OpenGLMagic()}, it uses the method in shader.cpp, passing into it all four GLSL shaders. \\
+
+This class sets up a window, before setting up everything needed to display the vertices in the window, using the World Maker class. Then each draw loop, it checks for user input, computes the camera's position, before drawing the terrain followed by the L-Systems.
+
+
+\subsection{controls.cpp}
+
+This class recalculates the camera's MVP (Model, View, Perspective) matrix and handles user input. Whilst this class was intially a class brought over from work done on tutorials, it was eventually reworked into an object, in order to make code easier to read. As well as this, it keeps track of user input, to allow for functionality such as changing the Level Of Detail displayed on screen, or changing the colour palette. 
+
+\subsection{shader.cpp}
+This class was provided by the tutorials followed. It compiles the shaders, passing them to the driver, before returning a shader ID for us to access them by. 
+
+\subsection{TransformVertexShader.vertexshader}
+This shader was provided by the tutorials followed. It takes in a vertex position and colour, outputs the position multiplied by the MVP matrix, and passes out the color to the fragment shader.
+
+
+\subsection{ColorFragmentShader.fragmentshader} This shader simply takes in the color and then outputs it again. It is here more for future proofing, so we can easily have more complex shaders in the future.  
+
+\subsection{l\_system\_transform.vert.glsl}
+Unlike TransformVertexShader, this shader takes in the l\_system vertices, and then a separate vector containing its position. It then positions the mesh in the vector containing its position.
+
+
+\subsection{l\_system\_colour.frag.glsl}
+This shader is identical to ColorFragmentShader.fragmentshader. It only exists again for future proofing the project. 
+
+
+\clearpage
+\subsection{Procedural Generation Class Structure}
+
+\begin{figure}[h!]
+\centering
+  \includegraphics[width=1\textwidth]{GenerationUML.png}
+ \caption{UML of classes relating to OpenGL}
+ \label{fig:GenerationUML}
+\end{figure}
+
+The majority of the code in the classes listed below is all my own work. The only method sourced externally is \textit{ResizeVector2} in \textit{diamond\_square.cpp}, which was gained from http://www.cplusplus.com/forum/beginner/102670/ .
+
+\subsection{world\_maker.cpp}
+WorldMaker is integral to the entire project. It controls the generation of everything within the world, specifying the order in \textit{MakeWorld()}, which takes in pointers to GLuints storing the ids for each vertexbuffer. \textit{MakeWorld()} first calls \textit{ComputeFullDiamondSquareBuffers()}, which gets DiamondSquare to generate the terrain vertices, before binding them to the vertex buffer. It then calls \textit{ComputeDiamondSquareColourBuffers()}, telling it to initially generate the colours in the blended colour palette. Once the colours have been generated, \textit{MakeWorld} then calls \textit{ComputeLSystemVertexBuffer()}, which generates the L-System vertices needed, followed by the generation of positions for the trees.
+
+\subsection{struct ColourList}
+This struct simply provides a point of access to the list of colours used to colour in the landscape.
+
+\subsection{diamond\_square.cpp}
+
+This class holds all the methods needed for generating a Diamond Square based Height Map, and converting that heightmap into vertices. When the constructor is called, once it has intialised all variables it then calls \textit{GenerateHeightMap()}, which generates \textit{n} number of height maps (where \textit{n = no\_of\_iterations}). Each iteration is representative of a different Level of Detail. \textit{GenerateVertices()} is called during world generation. It iterates over every heightmap generated, producing its equivalent vertices to display. 
+
+\subsection{l\_system.cpp}
+l\_system.cpp holds all the methods needed to generate one Lindenmayer System fractal. An L-System is first built up by defining the seed, number of iterations, angle modifier and scale in the constructor. Rules are then added, before generating the final iteration of the fractal string, with \textit{GenerateFractal()}. After generating the fractal, \textit{GenerateVertices()} is called, which generates the vertices to represent the tree through OpenGL.
+
+\subsection{struct Rule}
+This struct holds an axiom and a rule of which the axiom is replaced by. 
+
+\subsection{terrain\_quad\_tree.cpp}
+terrain\_quad\_tree.cpp is an implementation of a Quadtree. It simply has two instance variables, the Quadtree's root, and the number of iterations the Quadtree will run for. This class is a proof of concept for LOD tessellation. Whilst in practice the class itself is not optimised enough for live implementation, if it were to be used, GenerateQuadTree() is first called, which iterates over the heightmap, generating a quad tree, with smaller nodes being closer to the camera's position. Once it has been generated, GenerateVertices() is then called, which generates a set of vertices of stitched together heightmaps, as a quadtree. 
+
+\subsection{struct Node}
+Node is a struct used in terrain\_quad\_tree.cpp, which holds four nodes (representative of the Node's potential four children), details of its boundary, what level of detail it is and whether it is a leaf or a parent.
+
+
+\clearpage
+
 \section{Algorithms}
 \subsection{Diamond Square}
 The Diamond Square algorithm~\cite{miller1986definition}, is an algorithm which randomly generates fractal based terrain, iterating over terrain using two steps - Diamond and Square. \medskip 
@@ -296,7 +519,6 @@ One of the main issues with Diamond Square are edge values - whilst all other va
 
 \subsection{Lindenmayer Systems}
 
-Lindenmayer System is a String manipulation algorithm, which recursively iterates over a String according to a set of rules in order to generate a String representation of a fractal pattern. It's steps are as follows:
 
 \begin{wrapfigure}{r}{4cm}
 \centering
@@ -304,6 +526,10 @@ Lindenmayer System is a String manipulation algorithm, which recursively iterate
  \caption{Diagram illustrating an L-System's iterative process}
  \label{fig:l_system_AB}
 \end{wrapfigure}
+
+
+Lindenmayer System is a String manipulation algorithm, which recursively iterates over a String according to a set of rules in order to generate a String representation of a fractal pattern. It's steps are as follows:
+
 
 1. Define initial String seed
 2. Define the L-System's rules
@@ -335,29 +561,29 @@ Iteration 5: ABAABABAABAAB\medskip
 
 In Figure \ref{fig:l_system_AB}, Patterns can be generated easily and quickly. The next stage of Lindenmayer Systems is interpreting these patterns into something we can draw - this is achieved using "Turtle Graphics". The book, The Algorithmic Beauty of Plants~\cite{prusinkiewicz2012algorithmic} contains a comprehensive explanation of Lindenmayer Systems including these rules for 3D Lindenmayer Patterns:\medskip
 
-F: Move forward, by step \textit{d} and orientation \textit{n}. A line between {x, y, z} and {x', y', z'} is drawn.
+F: Move forward, by step \textit{d} and orientation \textit{n}. A line between {x, y, z} and {x', y', z'} is drawn. \\
 
-f: Move forward, by step \textit{d} and orientation \textit{n}. 
+f: Move forward, by step \textit{d} and orientation \textit{n}. \\
 
-+: Turn left by angle $\sigma$ along the xy axis (using the z rotation matrix)
++: Turn left by angle $\sigma$ along the xy axis (using the z rotation matrix)\\
 
--: Turn right by angle $\sigma$ along the xy axis (using the z rotation matrix)
+-: Turn right by angle $\sigma$ along the xy axis (using the z rotation matrix)\\
 
-\&: Pitch down by angle $\sigma$ along the xz axis (using the y rotation matrix)
+\&: Pitch down by angle $\sigma$ along the xz axis (using the y rotation matrix)\\
 
-$\wedge$: Pitch up by angle $\sigma$ along the xz axis (using the y rotation matrix)
+$\wedge$: Pitch up by angle $\sigma$ along the xz axis (using the y rotation matrix)\\
 
-\textbackslash: Roll left by angle $\sigma$ along the yz axis (using the x rotation matrix)
+\textbackslash: Roll left by angle $\sigma$ along the yz axis (using the x rotation matrix)\\
 
-/: Roll right by angle $\sigma$ along the yz axis (using the x rotation matrix)
+/: Roll right by angle $\sigma$ along the yz axis (using the x rotation matrix)\\
 
-|: Turn around along the xy axis (180 degrees using the z rotation matrix)
+|: Turn around along the xy axis (180 degrees using the z rotation matrix)\\
 
-[: Push the current state of the turtle onto a stack
+[: Push the current state of the turtle onto a stack\\
 
 ]: Pop a state from the stack and apply it to the turtle\medskip
 
-These rules expand the usefulness of Lindenmayer Systems. [ and ] especially are useful for this project, as they allow for branching structures, allowing us to create trees.
+These rules expand the usefulness of Lindenmayer Systems and are especially useful for this project, as they allow for branching structures, allowing us to create trees.
 
 \clearpage
 \subsection{Terrain LOD}
@@ -400,7 +626,7 @@ At the start of each week, stories/sprint goals were set out of what was the wee
 
 \subsection{Sprint Summary}
 
-The first sprint's main aim was to lat a good foundation on which to build the rest of my project. This was achieved through working through a set of OpenGL Tutorials~\cite{OpenGL_tutorial}, tweaking the project's Gantt Chart and Outline Spec, researching into potential Design Patterns (Model View Controller), learning more about OpenGL's general architecture, and more 3D Graphics basics (in particular, Model, View and Projection). \medskip
+The first sprint's main aim was to lat a good foundation on which to build the rest of my project. This was achieved through working through a set of OpenGL Tutorials~\cite{opengl_tutorial}, tweaking the project's Gantt Chart and Outline Spec, researching into potential Design Patterns (Model View Controller), learning more about OpenGL's general architecture, and more 3D Graphics basics (in particular, Model, View and Projection). \medskip
 
 A significant accomplishment was being able to display two different items in OpenGL. Whilst this may seem trivial, and an easy accomplishment, it meant the culmination of the knowledge learnt throughout the entire week - representing objects through vertices, Vertex Buffers and Colour Buffers, basic C++ syntax, and OpenGL syntax.\medskip
 
@@ -493,13 +719,13 @@ A significant accomplishment during this sprint was managing to get the code to 
   \centering
   \includegraphics[width=.9\linewidth]{Sprint5-3.png}
   \captionof{figure}{Initial terrain generation}
-  \label{fig:sprint}
+  \label{fig:sprint5-3}
 \end{minipage}%
 \begin{minipage}{.5\textwidth}
   \centering
   \includegraphics[width=.9\linewidth]{Sprint5-6.png}
   \captionof{figure}{Top down view of the terrain}
-  \label{fig:sprint3-3}
+  \label{fig:sprint5-6}
 \end{minipage}
 \end{figure}
 
@@ -720,6 +946,7 @@ The sprints were planned to finish to give me five days to focus on writing my r
 
 \chapter{Implementation Results}
 \section{Analysis}
+
 \subsection{Implementation Challenges}
 \subsection{Overall Problems and Issues}
 \section{Future Additions}
